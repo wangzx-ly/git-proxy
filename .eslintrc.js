@@ -18,7 +18,8 @@ module.exports = {
   'rules': {
     'indent': [
       'error',
-      2
+      2,
+      {"FunctionDeclaration": {"parameters": "first"}}
     ],
     'linebreak-style': [
       'error',
@@ -36,10 +37,6 @@ module.exports = {
     'no-unused-vars': 0,
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-empty-function': 0,
-    '@typescript-eslint/indent': [
-      'error',
-      2
-    ],
     '@typescript-eslint/ban-ts-comment': 0
   },
   "globals": {}

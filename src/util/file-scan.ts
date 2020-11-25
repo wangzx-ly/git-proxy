@@ -13,7 +13,7 @@ export default async function scan(
   includeHiddenFile = false,
 ): Promise<string[]> {
   // TODO 校验参数
-  deep = deep < 0 ? 0 : deep;
+  deep = deep < 0 ? 0 : deep
   // TODO 提供重载函数
   // TODO 支持gitignore
   const result: string[] = []
