@@ -5,6 +5,7 @@
 import AbsApi from '../abs-api'
 import {Handler} from '../../@types/custom-type'
 import fileScan from '../../util/file-scan'
+import * as path from "path";
 
 export default class ListFiles extends AbsApi {
 
@@ -20,8 +21,9 @@ export default class ListFiles extends AbsApi {
       const deep = Number.parseInt(ctx.query.deep) || 0
       const exclude = ('node_modules,' + (ctx.query.exclude || '')).split(',')
       const files = await fileScan([ctx.gitLocation], [], exclude, deep)
+      const relativePaths = files.map(f => f.replace(ctx.gitLocation + path.sep, ''))
       ctx.response.status = 200
-      ctx.response.body = files
+      ctx.response.body = relativePaths
     }
   }
 

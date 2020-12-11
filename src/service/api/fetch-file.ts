@@ -1,6 +1,7 @@
 import AbsApi from '../abs-api'
 import {Handler} from '../../@types/custom-type'
 import fs from 'fs'
+import path from "path";
 
 /**
  * @author hgd
@@ -17,7 +18,7 @@ export default class FetchFile extends AbsApi {
 
   handler(): Handler {
     return async (ctx, next) => {
-      const buffer = fs.readFileSync(ctx.request.body.filePath)
+      const buffer = fs.readFileSync(path.resolve(ctx.gitLocation, ctx.request.body.filePath))
       ctx.response.status = 200
       ctx.response.body = buffer.toString()
     }

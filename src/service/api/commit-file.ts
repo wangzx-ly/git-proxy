@@ -6,6 +6,7 @@ import AbsApi from '../abs-api'
 import {Handler} from '../../@types/custom-type'
 import fs from 'fs'
 import {CommitSummary, PushResult} from 'simple-git'
+import path from "path";
 
 export default class CommitFile extends AbsApi {
   api(): [string, string] {
@@ -15,7 +16,7 @@ export default class CommitFile extends AbsApi {
   handler(): Handler {
     return async (ctx, next) => {
       // TODO api参数检查
-      const filePath = ctx.request.body.filePath
+      const filePath = path.resolve(ctx.gitLocation, ctx.request.body.filePath)
       const file = ctx.request.body.file
       const author = ctx.request.body.author
       const message = ctx.request.body.message
