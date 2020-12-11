@@ -9,10 +9,22 @@ import path from 'path'
 import {ICustomAppContext, ICustomAppState} from './@types/custom-type'
 import simpleGit, {SimpleGit} from 'simple-git'
 import koaBody from 'koa-body'
+import cors from '@koa/cors'
 
 const port = process.env.PORT || 3210
+const allowOrigins = process.env.ORIGINS && process.env.ORIGINS.split(',')
 const app = new Koa<ICustomAppState, ICustomAppContext>()
 app.use(koaBody())
+app.use(cors({
+  origin: (ctx) => {
+    const ori = ctx.request.header.origin
+    if (allowOrigins && !allowOrigins.includes(ori)) {
+      return null;
+    } else {
+      return ori
+    }
+  }
+}))
 app.use(routes)
 
 const gitPath = gitLocation()
