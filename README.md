@@ -31,4 +31,9 @@
 - 使用
     - 直接将 `release/git-proxy.js` 文件放在git项目目录(或其他子目录)下，`node git-proxy.js` 启动。
     - 更改端口：`PORT=3333 node git-proxy.js`
+    - 后台运行（或pm2等其他方式）：
+      ```
+      # 脚本放在 .git/ 目录下
+      nohup node .git/git-proxy.js >> abc.log 2>&1 &
+      ```
 

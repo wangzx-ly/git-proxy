@@ -7,9 +7,9 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "lint:create": "eslint --init",
-    "dev": "npx ts-node src/index.ts",
+    "dev": "ts-node src/index.ts",
     "clean": "rm -rf dist/ && rm -f release/*",
-    "webpack": "npx webpack",
+    "webpack": "webpack",
     "release": "npm run clean && npm run webpack && cp dist/git-proxy.js dist/git-proxy.js.gz release/"
   },
   "keywords": [],
