@@ -20,6 +20,11 @@ export default class CommitFile extends AbsApi {
       const file = ctx.request.body.file
       const author = ctx.request.body.author
       const message = ctx.request.body.message
+      if (!author || !message) {
+        ctx.response.status = 400
+        ctx.response.body = {message: 'lack of author or commit message'}
+        return
+      }
       const push = ctx.request.body.push === 'false' ? false : !!ctx.request.body.push
       fs.writeFileSync(filePath, file)
       await ctx.git.add(filePath)
